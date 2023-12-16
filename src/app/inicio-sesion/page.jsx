@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { useAuth } from "@/context/AuthProvider";
 
@@ -64,6 +65,8 @@ function InicioSesion(){
             </div>
 
             <input className="boton cursor-pointer" type="submit" value="Iniciar sesión" />
+
+            <span className="mt-8 text-center">¿No tienes cuenta? <Link className="text-cyan-800 hover:text-cyan-900" href="/registro">Registrarse</Link></span>
         </form>
     )
 }

@@ -1,7 +1,9 @@
 "use client"
 
-import { useAuth } from "@/context/AuthProvider";
 import { useState } from "react";
+import Link from "next/link";
+
+import { useAuth } from "@/context/AuthProvider";
 
 function Registro(){
     const { registrarUsuario } = useAuth();
@@ -54,6 +56,8 @@ function Registro(){
             </div>
 
             <input className="boton cursor-pointer" type="submit" value="Registrarse" />
+
+            <span className="mt-8 text-center">¿Ya tienes cuenta? <Link className="text-cyan-800 hover:text-cyan-900" href="/inicio-sesion">Iniciar sesión</Link></span>
         </form>
     )
 }
