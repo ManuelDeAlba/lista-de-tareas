@@ -8,7 +8,7 @@ function Navbar(){
 
     return(
         <nav className="h-[50px] bg-cyan-900 text-white">
-            <div className="h-full container m-auto flex justify-end items-center gap-4">
+            <div className="h-full w-[90%] max-w-5xl m-auto flex justify-end items-center gap-4">
                 {
                     usuarioAuth ? (
                         <>

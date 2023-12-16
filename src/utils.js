@@ -11,3 +11,9 @@ export const ERRORES_FIREBASE = {
         "auth/too-many-requests": "Acceso a la cuenta deshabilitado. Restablezca la contraseña",
     },
 }
+
+export function limpiarTexto(texto) {
+    return texto
+        .replaceAll(/<br>/g, "\n") // Los saltos de línea en HTML se convierten a \n
+        .split("\n"); // Se separa por saltos de línea
+}
