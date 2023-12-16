@@ -26,7 +26,7 @@ function Inicio(){
 
     useEffect(() => {
         if(!usuarioAuth && !cargandoUsuario){
-            router.push("/registro");
+            router.push("/inicio-sesion");
         }
     }, [usuarioAuth, cargandoUsuario])
 
