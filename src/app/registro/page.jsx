@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { useAuth } from "@/context/AuthProvider";
+import { ERRORES_FIREBASE } from "@/utils";
 
 function Registro(){
     const { registrarUsuario } = useAuth();
@@ -11,11 +12,16 @@ function Registro(){
         correo: "",
         contrasena: ""
     });
+    const [error, setError] = useState("");
 
     const handleSubmit = async e => {
         e.preventDefault();
 
-        await registrarUsuario(datosUsuario);
+        try{
+            await registrarUsuario(datosUsuario);
+        } catch(error){
+            setError(ERRORES_FIREBASE.AUTH[error.code]);
+        }
     }
 
     const handleInput = e => {
@@ -39,6 +45,7 @@ function Registro(){
                     placeholder="correo@example.com"
                     value={datosUsuario.correo}
                     onInput={handleInput}
+                    required
                 />
             </div>
 
@@ -52,8 +59,15 @@ function Registro(){
                     placeholder="********"
                     value={datosUsuario.contrasena}
                     onInput={handleInput}
+                    required
                 />
             </div>
+
+            {
+                error && (
+                    <span className="text-red-600">{error}</span>
+                )
+            }
 
             <input className="boton cursor-pointer" type="submit" value="Registrarse" />
 

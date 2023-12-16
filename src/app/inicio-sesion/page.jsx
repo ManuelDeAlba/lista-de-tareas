@@ -5,15 +5,17 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { useAuth } from "@/context/AuthProvider";
+import { ERRORES_FIREBASE } from "@/utils";
 
 function InicioSesion(){
+    const router = useRouter();
+
     const { iniciarSesion } = useAuth();
     const [datosUsuario, setDatosUsuario] = useState({
         correo: "",
         contrasena: ""
     });
-
-    const router = useRouter();
+    const [error, setError] = useState("");
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -22,8 +24,8 @@ function InicioSesion(){
             await iniciarSesion(datosUsuario);
 
             router.push("/");
-        } catch(err){
-            console.log(err)
+        } catch(error){
+            setError(ERRORES_FIREBASE.AUTH[error.code]);
         }
     }
 
@@ -48,6 +50,7 @@ function InicioSesion(){
                     placeholder="correo@example.com"
                     value={datosUsuario.correo}
                     onInput={handleInput}
+                    required
                 />
             </div>
 
@@ -61,8 +64,15 @@ function InicioSesion(){
                     placeholder="********"
                     value={datosUsuario.contrasena}
                     onInput={handleInput}
+                    required
                 />
             </div>
+
+            {
+                error && (
+                    <span className="text-red-600">{error}</span>
+                )
+            }
 
             <input className="boton cursor-pointer" type="submit" value="Iniciar sesión" />
 
