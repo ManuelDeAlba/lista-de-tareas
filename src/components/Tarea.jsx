@@ -39,7 +39,7 @@ function Tarea({ tarea, handleEditar, handleBorrar }){
             <div className="my-4">
                 {
                     limpiarTexto(tarea.descripcion).map((linea, index) => (
-                        <p className="whitespace-normal" key={index}>{linea}</p>
+                        <p className="whitespace-normal break-words" key={index}>{linea}</p>
                     ))
                 }
             </div>

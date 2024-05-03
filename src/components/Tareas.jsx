@@ -22,7 +22,7 @@ function Tareas({ handleEditar, handleBorrar }){
     }, [cargandoUsuario])
 
     return(
-        <div>
+        <div className="pb-6">
             <h1 className="text-2xl font-bold text-center mb-4">Tareas</h1>
             <div className="flex flex-col gap-4">
                 {
